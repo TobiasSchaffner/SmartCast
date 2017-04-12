@@ -1,0 +1,37 @@
+<?xml version="1.0"?><hm.edu.controller.Container>
+  <songs>
+    <hm.edu.model.Song>
+      <title>Petit Biscuit - Blue Deep Eyes</title>
+      <url>https://www.youtube.com/watch?v=5-N_VXmOAlI</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title> Maribel Tafur - Summer Dreams</title>
+      <url>https://www.youtube.com/watch?v=QOGdO1UScw4</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Sekuoia - Something we lost</title>
+      <url>https://www.youtube.com/watch?v=CEpJKWZ-XuU</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Sekuoia || Rituals </title>
+      <url>https://www.youtube.com/watch?v=uO5Ip1_RxBs</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Petit Biscuit - Night Trouble </title>
+      <url>https://www.youtube.com/watch?v=kVT70btvFJo</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Swell ft. Shiloh - im sorry</title>
+      <url>https://youtu.be/331coS7hMOU</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Tekvision - Lament</title>
+      <url>https://www.youtube.com/watch?v=RfCViT13TH0</url>
+    </hm.edu.model.Song>
+    <hm.edu.model.Song>
+      <title>Sekuoia - Waves</title>
+      <url>https://soundcloud.com/sekuoia-1/waves-1</url>
+    </hm.edu.model.Song>
+  </songs>
+  <ip>192.168.0.13:12345</ip>
+</hm.edu.controller.Container>

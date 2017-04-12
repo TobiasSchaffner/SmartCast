@@ -1,0 +1,8 @@
+.button {
+    -fx-font-weight: bold;
+}
+.label-error {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: red;
+}

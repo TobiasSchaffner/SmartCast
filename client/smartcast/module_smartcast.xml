@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_smartcast" default="compile.module.smartcast">
+  <dirname property="module.smartcast.basedir" file="${ant.file.module_smartcast}"/>
+  
+  <property name="module.jdk.home.smartcast" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.smartcast" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.smartcast" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.smartcast" value="-encoding UTF-8 -source 8 -target 1.8 ${compiler.args}"/>
+  
+  <property name="smartcast.output.dir" value="${module.smartcast.basedir}/target/classes"/>
+  <property name="smartcast.testoutput.dir" value="${module.smartcast.basedir}/target/test-classes"/>
+  
+  <path id="smartcast.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="smartcast.module.production.classpath">
+    <path refid="${module.jdk.classpath.smartcast}"/>
+    <path refid="library.maven:_com.thoughtworks.xstream:xstream:1.4.8.classpath"/>
+    <path refid="library.maven:_xmlpull:xmlpull:1.1.3.1.classpath"/>
+    <path refid="library.maven:_xpp3:xpp3_min:1.1.4c.classpath"/>
+  </path>
+  
+  <path id="smartcast.runtime.production.module.classpath">
+    <pathelement location="${smartcast.output.dir}"/>
+    <path refid="library.maven:_com.thoughtworks.xstream:xstream:1.4.8.classpath"/>
+    <path refid="library.maven:_xmlpull:xmlpull:1.1.3.1.classpath"/>
+    <path refid="library.maven:_xpp3:xpp3_min:1.1.4c.classpath"/>
+  </path>
+  
+  <path id="smartcast.module.classpath">
+    <path refid="${module.jdk.classpath.smartcast}"/>
+    <pathelement location="${smartcast.output.dir}"/>
+    <path refid="library.maven:_com.thoughtworks.xstream:xstream:1.4.8.classpath"/>
+    <path refid="library.maven:_xmlpull:xmlpull:1.1.3.1.classpath"/>
+    <path refid="library.maven:_xpp3:xpp3_min:1.1.4c.classpath"/>
+  </path>
+  
+  <path id="smartcast.runtime.module.classpath">
+    <pathelement location="${smartcast.testoutput.dir}"/>
+    <pathelement location="${smartcast.output.dir}"/>
+    <path refid="library.maven:_com.thoughtworks.xstream:xstream:1.4.8.classpath"/>
+    <path refid="library.maven:_xmlpull:xmlpull:1.1.3.1.classpath"/>
+    <path refid="library.maven:_xpp3:xpp3_min:1.1.4c.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.smartcast">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.smartcast">
+    <patternset refid="excluded.from.module.smartcast"/>
+  </patternset>
+  
+  <path id="smartcast.module.sourcepath">
+    <dirset dir="${module.smartcast.basedir}">
+      <include name="src/main/java"/>
+      <include name="src/main/resources"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.smartcast" depends="compile.module.smartcast.production,compile.module.smartcast.tests" description="Compile module smartcast"/>
+  
+  <target name="compile.module.smartcast.production" depends="register.custom.compilers" description="Compile module smartcast; production classes">
+    <mkdir dir="${smartcast.output.dir}"/>
+    <javac2 destdir="${smartcast.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.smartcast}/javac">
+      <compilerarg line="${compiler.args.smartcast}"/>
+      <bootclasspath refid="smartcast.module.bootclasspath"/>
+      <classpath refid="smartcast.module.production.classpath"/>
+      <src refid="smartcast.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.smartcast"/>
+    </javac2>
+    
+    <copy todir="${smartcast.output.dir}">
+      <fileset dir="${module.smartcast.basedir}/src/main/java">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+      <fileset dir="${module.smartcast.basedir}/src/main/resources">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.smartcast.tests" depends="register.custom.compilers,compile.module.smartcast.production" description="compile module smartcast; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.smartcast" description="cleanup module">
+    <delete dir="${smartcast.output.dir}"/>
+    <delete dir="${smartcast.testoutput.dir}"/>
+  </target>
+</project>
